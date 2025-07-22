@@ -1,0 +1,23 @@
+name: Build & Publish Docker image
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  docker:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      
+      # - name: Log in to Docker Hub
+      #   run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker image
+        run: docker build . --file Dockerfile --tag rllola/titanic:${{ github.ref_name }}
+
+      # - name: Push Docker image
+      #   run: docker push rllola/titanic:${{ github.ref_name }}
