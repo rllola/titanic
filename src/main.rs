@@ -1,5 +1,9 @@
+use log::info;
+
 fn main() {
-    println!("Hello, world!");
+    env_logger::init();
+
+    info!("Hello, Titanic!");
 }
 
 #[cfg(test)]
